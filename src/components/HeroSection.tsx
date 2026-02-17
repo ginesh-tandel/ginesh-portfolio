@@ -2,75 +2,28 @@ import { useState, useEffect } from "react";
 import { ArrowDown, Download, Send, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const titles = ["Senior .NET", "Full Stack", "Developer"];
+const fullTitle = "Senior .NET\nFull Stack\nDeveloper";
 
-function useTypingEffect(
-  words: string[],
-  typingSpeed = 80,
-  deletingSpeed = 50,
-  pauseTime = 1500,
-) {
-  const [displayText, setDisplayText] = useState("");
-  const [wordIndex, setWordIndex] = useState(0);
-  const [phase, setPhase] = useState<"typing" | "pausing" | "deleting">(
-    "typing",
-  );
+function useTypingEffect(text: string, speed = 80) {
+  const [charIndex, setCharIndex] = useState(0);
   const [isDone, setIsDone] = useState(false);
 
   useEffect(() => {
     if (isDone) return;
-
-    const currentWord = words[wordIndex];
-
-    if (phase === "typing") {
-      if (displayText.length < currentWord.length) {
-        const t = setTimeout(
-          () => setDisplayText(currentWord.slice(0, displayText.length + 1)),
-          typingSpeed,
-        );
-        return () => clearTimeout(t);
-      }
-      // Fully typed
-      if (wordIndex === words.length - 1) {
-        setIsDone(true);
-        return;
-      }
-      setPhase("pausing");
-      return;
-    }
-
-    if (phase === "pausing") {
-      const t = setTimeout(() => setPhase("deleting"), pauseTime);
+    if (charIndex < text.length) {
+      const t = setTimeout(() => setCharIndex((i) => i + 1), speed);
       return () => clearTimeout(t);
     }
+    setIsDone(true);
+  }, [charIndex, isDone, text, speed]);
 
-    if (phase === "deleting") {
-      if (displayText.length > 0) {
-        const t = setTimeout(
-          () => setDisplayText(displayText.slice(0, -1)),
-          deletingSpeed,
-        );
-        return () => clearTimeout(t);
-      }
-      setWordIndex((prev) => prev + 1);
-      setPhase("typing");
-    }
-  }, [
-    displayText,
-    phase,
-    wordIndex,
-    isDone,
-    words,
-    typingSpeed,
-    deletingSpeed,
-    pauseTime,
-  ]);
-
-  return { displayText, wordIndex, isDone };
+  return { displayText: text.slice(0, charIndex), isDone };
 }
 
 export function HeroSection() {
-  const { displayText, wordIndex, isDone } = useTypingEffect(titles);
+  const { displayText, isDone } = useTypingEffect(fullTitle);
+
+  const lines = displayText.split("\n");
 
   return (
     <section id="home" className="flex min-h-screen items-center px-6 pt-20">
@@ -80,29 +33,11 @@ export function HeroSection() {
             Hey, I'm Ginesh Tandel 👋
           </p>
           <h1 className="mt-4 text-5xl font-extrabold leading-[1.1] tracking-tight sm:text-6xl lg:text-7xl min-h-[3.3em]">
-            <span
-              className={
-                wordIndex === 0 && !isDone
-                  ? "text-primary"
-                  : wordIndex > 0 || isDone
-                    ? "text-primary"
-                    : "text-foreground"
-              }
-            >
-              {wordIndex === 0 && !isDone ? displayText : titles[0]}
-            </span>
-            {(wordIndex > 0 || isDone) && <br />}
-            <span className="text-foreground">
-              {wordIndex === 1 && !isDone
-                ? displayText
-                : wordIndex > 1 || isDone
-                  ? titles[1]
-                  : ""}
-            </span>
-            {(wordIndex > 1 || isDone) && <br />}
-            <span className="text-foreground">
-              {wordIndex === 2 ? displayText : isDone ? titles[2] : ""}
-            </span>
+            <span className="text-primary">{lines[0]}</span>
+            {lines.length > 1 && <br />}
+            <span className="text-foreground">{lines[1] || ""}</span>
+            {lines.length > 2 && <br />}
+            <span className="text-foreground">{lines[2] || ""}</span>
             {!isDone && (
               <span className="ml-1 inline-block w-[3px] h-[1em] bg-primary animate-[pulse_1s_ease-in-out_infinite] align-middle" />
             )}
