@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Mail, Linkedin, Github, Send } from "lucide-react";
+import { Mail, Linkedin, Github, Send, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -7,20 +7,25 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
-
+import emailjs from "@emailjs/browser";
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100),
   email: z.string().trim().email("Invalid email address").max(255),
   message: z.string().trim().min(1, "Message is required").max(1000),
 });
 
+const EMAILJS_SERVICE_ID = "service_8rp4vil";
+const EMAILJS_TEMPLATE_ID = "template_dhnvzoc";
+const EMAILJS_PUBLIC_KEY = "6wUtCP-uEoQTb6aDV";
+
 export function ContactSection() {
   const { toast } = useToast();
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [sending, setSending] = useState(false);
   const { ref, isVisible } = useScrollReveal();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const result = contactSchema.safeParse(form);
     if (!result.success) {
@@ -32,11 +37,32 @@ export function ContactSection() {
       return;
     }
     setErrors({});
-    toast({
-      title: "Message sent!",
-      description: "Thanks for reaching out. I'll get back to you soon.",
-    });
-    setForm({ name: "", email: "", message: "" });
+    setSending(true);
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name: result.data.name,
+          from_email: result.data.email,
+          message: result.data.message,
+        },
+        EMAILJS_PUBLIC_KEY
+      );
+      toast({
+        title: "Message sent!",
+        description: "Thanks for reaching out. I'll get back to you soon.",
+      });
+      setForm({ name: "", email: "", message: "" });
+    } catch {
+      toast({
+        title: "Failed to send",
+        description: "Something went wrong. Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -135,9 +161,9 @@ export function ContactSection() {
                 </p>
               )}
             </div>
-            <Button type="submit" className="w-full">
-              <Send className="mr-2 h-4 w-4" />
-              Send Message
+            <Button type="submit" className="w-full" disabled={sending}>
+              {sending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Send className="mr-2 h-4 w-4" />}
+              {sending ? "Sending..." : "Send Message"}
             </Button>
           </form>
         </div>
