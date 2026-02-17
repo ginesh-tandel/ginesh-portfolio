@@ -28,10 +28,11 @@ export function AboutSection() {
         </p>
 
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {strengths.map((s) => (
+          {strengths.map((s, i) => (
             <Card
               key={s.title}
-              className="group border-border/60 transition-all hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5"
+              className={`group border-border/60 transition-all duration-700 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              style={{ transitionDelay: isVisible ? `${i * 150}ms` : "0ms" }}
             >
               <CardContent className="flex flex-col items-start p-6">
                 <div className="mb-4 rounded-xl bg-primary/10 p-3 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">

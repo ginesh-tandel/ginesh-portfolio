@@ -36,10 +36,11 @@ export function SkillsSection() {
         </p>
 
         <div className="mt-14 grid gap-8 md:grid-cols-3">
-          {categories.map((cat) => (
+          {categories.map((cat, i) => (
             <Card
               key={cat.title}
-              className="border-border/60 transition-all hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5"
+              className={`border-border/60 transition-all duration-700 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              style={{ transitionDelay: isVisible ? `${i * 150}ms` : "0ms" }}
             >
               <CardHeader>
                 <div className="mb-2 inline-flex rounded-xl bg-primary/10 p-3 text-primary">

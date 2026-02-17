@@ -36,10 +36,11 @@ export function ProjectsSection() {
         </p>
 
         <div className="mt-14 grid gap-8 md:grid-cols-3">
-          {projects.map((p) => (
+          {projects.map((p, i) => (
             <Card
               key={p.title}
-              className="group flex flex-col border-border/60 transition-all hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5"
+              className={`group flex flex-col border-border/60 transition-all duration-700 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              style={{ transitionDelay: isVisible ? `${i * 150}ms` : "0ms" }}
             >
               <CardHeader>
                 <div className="flex items-start justify-between">

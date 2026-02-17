@@ -54,7 +54,11 @@ export function ExperienceSection() {
 
           <div className="flex flex-col gap-12">
             {experiences.map((exp, i) => (
-              <div key={i} className="relative pl-8">
+              <div
+                key={i}
+                className={`relative pl-8 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+                style={{ transitionDelay: isVisible ? `${i * 200}ms` : "0ms" }}
+              >
                 {/* Dot */}
                 <div className="absolute left-0 top-1 h-3 w-3 -translate-x-1/2 rounded-full border-2 border-primary bg-background" />
 
