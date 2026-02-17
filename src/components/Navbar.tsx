@@ -20,7 +20,7 @@ export function Navbar() {
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
         <a href="#home" className="text-lg font-bold tracking-tight text-foreground">
-          Ginesh Tandel<span className="text-primary">.</span>
+          <span className="text-primary font-extrabold">G</span>inesh Tandel<span className="text-primary">.</span>
         </a>
 
         {/* Desktop nav — centered */}
