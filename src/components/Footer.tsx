@@ -8,13 +8,29 @@ export function Footer() {
           © {new Date().getFullYear()} Ginesh Tandel. All rights reserved.
         </p>
         <div className="flex items-center gap-4">
-          <a href="mailto:ginesh.tandel.dotnet@gmail.com" className="text-muted-foreground transition-colors hover:text-foreground" aria-label="Email">
+          <a
+            href="mailto:ginesh.tandel.dotnet@gmail.com"
+            className="text-muted-foreground transition-colors hover:text-foreground"
+            aria-label="Email"
+          >
             <Mail className="h-5 w-5" />
           </a>
-          <a href="https://linkedin.com/in/gineshtandel" target="_blank" rel="noopener noreferrer" className="text-muted-foreground transition-colors hover:text-foreground" aria-label="LinkedIn">
+          <a
+            href="https://linkedin.com/in/ginesh-tandel"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-muted-foreground transition-colors hover:text-foreground"
+            aria-label="LinkedIn"
+          >
             <Linkedin className="h-5 w-5" />
           </a>
-          <a href="https://github.com/gineshtandel" target="_blank" rel="noopener noreferrer" className="text-muted-foreground transition-colors hover:text-foreground" aria-label="GitHub">
+          <a
+            href="https://github.com/ginesh-tandel"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-muted-foreground transition-colors hover:text-foreground"
+            aria-label="GitHub"
+          >
             <Github className="h-5 w-5" />
           </a>
         </div>

@@ -30,7 +30,10 @@ export function ContactSection() {
       return;
     }
     setErrors({});
-    toast({ title: "Message sent!", description: "Thanks for reaching out. I'll get back to you soon." });
+    toast({
+      title: "Message sent!",
+      description: "Thanks for reaching out. I'll get back to you soon.",
+    });
     setForm({ name: "", email: "", message: "" });
   };
 
@@ -48,7 +51,9 @@ export function ContactSection() {
           {/* Info */}
           <div className="flex flex-col gap-6">
             <div>
-              <h3 className="text-lg font-semibold text-foreground">Let's Connect</h3>
+              <h3 className="text-lg font-semibold text-foreground">
+                Let's Connect
+              </h3>
               <p className="mt-2 text-muted-foreground">
                 I'm always open to discussing new projects, creative ideas, or
                 opportunities to be part of your vision.
@@ -63,7 +68,7 @@ export function ContactSection() {
                 ginesh.tandel.dotnet@gmail.com
               </a>
               <a
-                href="https://linkedin.com/in/gineshtandel"
+                href="https://linkedin.com/in/ginesh-tandel"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 text-muted-foreground transition-colors hover:text-foreground"
@@ -72,7 +77,7 @@ export function ContactSection() {
                 LinkedIn
               </a>
               <a
-                href="https://github.com/gineshtandel"
+                href="https://github.com/ginesh-tandel"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 text-muted-foreground transition-colors hover:text-foreground"
@@ -94,7 +99,9 @@ export function ContactSection() {
                 placeholder="Your name"
                 className="mt-1"
               />
-              {errors.name && <p className="mt-1 text-xs text-destructive">{errors.name}</p>}
+              {errors.name && (
+                <p className="mt-1 text-xs text-destructive">{errors.name}</p>
+              )}
             </div>
             <div>
               <Label htmlFor="email">Email</Label>
@@ -106,7 +113,9 @@ export function ContactSection() {
                 placeholder="your@email.com"
                 className="mt-1"
               />
-              {errors.email && <p className="mt-1 text-xs text-destructive">{errors.email}</p>}
+              {errors.email && (
+                <p className="mt-1 text-xs text-destructive">{errors.email}</p>
+              )}
             </div>
             <div>
               <Label htmlFor="message">Message</Label>
@@ -118,7 +127,11 @@ export function ContactSection() {
                 rows={5}
                 className="mt-1"
               />
-              {errors.message && <p className="mt-1 text-xs text-destructive">{errors.message}</p>}
+              {errors.message && (
+                <p className="mt-1 text-xs text-destructive">
+                  {errors.message}
+                </p>
+              )}
             </div>
             <Button type="submit" className="w-full">
               <Send className="mr-2 h-4 w-4" />
