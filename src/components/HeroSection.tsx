@@ -43,7 +43,10 @@ export function HeroSection() {
   const lines = displayText.split("\n");
 
   return (
-    <section id="home" className="relative flex min-h-screen items-center px-6 pt-20 overflow-hidden">
+    <section
+      id="home"
+      className="relative flex min-h-screen items-center px-6 pt-20 overflow-hidden"
+    >
       {/* Parallax background elements */}
       <div
         className="pointer-events-none absolute inset-0 -z-10"
@@ -73,15 +76,27 @@ export function HeroSection() {
             .NET, ASP.NET Core, React, Angular, and SQL Server.
           </p>
           <div className="animate-fade-up-delay-3 mt-8 flex flex-wrap items-center gap-4">
-            <Button size="lg" className="rounded-full px-6" onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}>
+            <Button
+              size="lg"
+              className="rounded-full px-6"
+              onClick={() =>
+                document
+                  .getElementById("contact")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
+            >
               <Send className="mr-2 h-4 w-4" />
               Get In Touch
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="rounded-full px-6"
-              onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
+              className="rounded-full px-6 border-primary"
+              onClick={() =>
+                document
+                  .getElementById("projects")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
             >
               <ArrowDown className="mr-2 h-4 w-4" />
               Browse Projects
@@ -93,10 +108,19 @@ export function HeroSection() {
           <div className="relative">
             <div className="h-80 w-80 rounded-full border-2 border-primary/20 lg:h-96 lg:w-96" />
             <div className="absolute inset-4 overflow-hidden rounded-full">
-              <img src={profilePhoto} alt="Ginesh Tandel" className="h-full w-full object-cover" />
+              <img
+                src={profilePhoto}
+                alt="Ginesh Tandel"
+                className="h-full w-full object-cover"
+              />
             </div>
           </div>
-          <Button size="lg" variant="outline" className="rounded-full px-6" asChild>
+          <Button
+            size="lg"
+            variant="outline"
+            className="rounded-full px-6 border-primary"
+            asChild
+          >
             <a href="/resume.pdf" download>
               <Download className="mr-2 h-4 w-4" />
               Download CV
