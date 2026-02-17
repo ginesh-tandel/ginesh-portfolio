@@ -4,13 +4,18 @@ import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 
 const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
-  { label: "Experience", href: "#experience" },
-  { label: "Projects", href: "#projects" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", id: "home" },
+  { label: "About", id: "about" },
+  { label: "Skills", id: "skills" },
+  { label: "Experience", id: "experience" },
+  { label: "Projects", id: "projects" },
+  { label: "Contact", id: "contact" },
 ];
+
+const scrollTo = (id: string) => {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: "smooth" });
+};
 
 export function Navbar() {
   const { theme, setTheme } = useTheme();
@@ -19,27 +24,27 @@ export function Navbar() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
-        <a
-          href="#home"
-          className="group text-lg font-bold tracking-tight text-foreground transition-transform duration-200 hover:scale-150"
+        <button
+          onClick={() => scrollTo("home")}
+          className="cursor-pointer group text-lg font-bold tracking-tight text-foreground transition-transform duration-200 hover:scale-150"
         >
           <span className="text-primary font-extrabold transition-colors duration-300 group-hover:text-primary/80">
             G
           </span>
           inesh
           <span className="text-primary transition-transform duration-300 inline-block group-hover:rotate-12"></span>
-        </a>
+        </button>
 
         {/* Desktop nav — centered */}
         <ul className="hidden items-center gap-8 md:flex">
           {navLinks.map((l) => (
-            <li key={l.href}>
-              <a
-                href={l.href}
+            <li key={l.id}>
+              <button
+                onClick={() => scrollTo(l.id)}
                 className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
               >
                 {l.label}
-              </a>
+              </button>
             </li>
           ))}
         </ul>
@@ -76,14 +81,13 @@ export function Navbar() {
         <div className="bg-background/95 backdrop-blur-lg md:hidden">
           <ul className="flex flex-col gap-1 px-6 py-4">
             {navLinks.map((l) => (
-              <li key={l.href}>
-                <a
-                  href={l.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="block rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+              <li key={l.id}>
+                <button
+                  onClick={() => { scrollTo(l.id); setMobileOpen(false); }}
+                  className="block w-full text-left rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                 >
                   {l.label}
-                </a>
+                </button>
               </li>
             ))}
           </ul>

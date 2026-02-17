@@ -47,22 +47,18 @@ export function HeroSection() {
             .NET, ASP.NET Core, React, Angular, and SQL Server.
           </p>
           <div className="animate-fade-up-delay-3 mt-8 flex flex-wrap items-center gap-4">
-            <Button size="lg" className="rounded-full px-6" asChild>
-              <a href="#contact">
-                <Send className="mr-2 h-4 w-4" />
-                Get In Touch
-              </a>
+            <Button size="lg" className="rounded-full px-6" onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}>
+              <Send className="mr-2 h-4 w-4" />
+              Get In Touch
             </Button>
             <Button
               size="lg"
               variant="outline"
               className="rounded-full px-6"
-              asChild
+              onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
             >
-              <a href="#projects">
-                <ArrowDown className="mr-2 h-4 w-4" />
-                Browse Projects
-              </a>
+              <ArrowDown className="mr-2 h-4 w-4" />
+              Browse Projects
             </Button>
           </div>
         </div>
