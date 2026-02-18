@@ -81,9 +81,14 @@ export default {
           },
         },
       },
+      "gradient-sweep": {
+        "0%": { backgroundPosition: "0% center" },
+        "100%": { backgroundPosition: "200% center" },
+      },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "gradient-sweep": "gradient-sweep 3s linear infinite",
       },
     },
   },

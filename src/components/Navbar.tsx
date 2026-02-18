@@ -26,13 +26,13 @@ export function Navbar() {
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
         <button
           onClick={() => scrollTo("home")}
-          className="cursor-pointer group text-lg font-bold tracking-tight text-foreground transition-transform duration-200 hover:scale-150"
+          className="cursor-pointer text-xl font-extrabold tracking-tight transition-transform duration-200 hover:scale-110 animate-gradient-sweep bg-[length:200%_auto] bg-clip-text text-transparent"
+          style={{
+            backgroundImage:
+              "linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent)), hsl(var(--primary)))",
+          }}
         >
-          <span className="text-primary font-extrabold transition-colors duration-300 group-hover:text-primary/80">
-            G
-          </span>
-          inesh
-          <span className="text-primary transition-transform duration-300 inline-block group-hover:rotate-12"></span>
+          Ginesh<span className="text-primary">.</span>
         </button>
 
         {/* Desktop nav — centered */}
