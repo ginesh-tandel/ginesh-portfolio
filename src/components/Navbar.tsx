@@ -36,13 +36,13 @@ export function Navbar() {
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
         <button
           onClick={() => scrollTo("home")}
-          className="cursor-pointer text-xl font-extrabold tracking-tight transition-transform duration-200 hover:scale-110 animate-gradient-sweep bg-[length:200%_auto] bg-clip-text text-transparent"
-          style={{
-            backgroundImage:
-              "linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent)), hsl(var(--primary)))",
-          }}
+          className="cursor-pointer text-xl font-extrabold tracking-tight transition-transform duration-200 hover:scale-110"
         >
-          {brandName.slice(0, charIndex)}
+          {brandName.slice(0, charIndex).split("").map((char, i) => (
+            <span key={i} className={i === 0 ? "text-primary" : "text-foreground"}>
+              {char}
+            </span>
+          ))}
           {charIndex < brandName.length && (
             <span className="ml-0.5 inline-block w-[2px] h-[1em] bg-primary animate-[pulse_0.8s_ease-in-out_infinite] align-middle" />
           )}
