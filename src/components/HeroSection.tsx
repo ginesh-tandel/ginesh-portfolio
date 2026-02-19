@@ -152,6 +152,32 @@ export function HeroSection() {
           </div>
         </div>
 
+        {/* Mobile photo */}
+        <div className="flex flex-col items-center justify-center gap-4 md:hidden">
+          <div className="relative">
+            <div className="h-48 w-48 rounded-full border-2 border-primary/20" />
+            <div className="absolute inset-3 overflow-hidden rounded-full">
+              <img
+                src={profilePhoto}
+                alt="Ginesh Tandel"
+                className="h-full w-full object-cover"
+              />
+            </div>
+          </div>
+          <Button
+            size="default"
+            variant="outline"
+            className="rounded-full px-6 border-primary"
+            asChild
+          >
+            <a href={resumePath} download>
+              <Download className="mr-2 h-4 w-4" />
+              Download CV
+            </a>
+          </Button>
+        </div>
+
+        {/* Desktop photo */}
         <div className="hidden flex-col items-center justify-center gap-6 md:flex">
           <div className="relative">
             <div className="h-80 w-80 rounded-full border-2 border-primary/20 lg:h-96 lg:w-96" />
